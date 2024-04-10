@@ -3,14 +3,17 @@ import { NativeScriptModule } from '@nativescript/angular'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { ItemsComponent } from './item/items.component'
-import { ItemDetailComponent } from './item/item-detail.component'
+import { HomePageComponent } from "~/app/home-page/home-page.component";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { SharedModule } from "~/app/shared/shared.module";
+import { RecipeModule } from "~/app/recipe/recipe.module";
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, AppRoutingModule],
-  declarations: [AppComponent, ItemsComponent, ItemDetailComponent],
-  providers: [],
+  imports: [NativeScriptModule, AppRoutingModule, HttpClientModule, SharedModule, RecipeModule],
+  declarations: [AppComponent, HomePageComponent],
+  providers: [HttpClient],
   schemas: [NO_ERRORS_SCHEMA],
 })
-export class AppModule {}
+export class AppModule {
+}

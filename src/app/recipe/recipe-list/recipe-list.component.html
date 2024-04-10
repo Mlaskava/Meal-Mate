@@ -1,0 +1,10 @@
+<ListView [items]="recipes$ | async" height="1500">
+    <ng-template let-recipe="item">
+        <StackLayout>
+            <Label fontSize="30" textWrap="true">{{ recipe.name }}</Label>
+            <Image [src]="recipe.thumbnail_url" height="200" width="800" stretch="aspectFill"></Image>
+            <ns-tags-list [tags]="recipe.tags"></ns-tags-list>
+
+        </StackLayout>
+    </ng-template>
+</ListView>

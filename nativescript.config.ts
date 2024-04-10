@@ -1,7 +1,7 @@
 import { NativeScriptConfig } from '@nativescript/core';
 
 export default {
-  id: 'org.nativescript.DietHelper',
+  id: 'org.nativescript.MealMate',
   appPath: 'src',
   appResourcesPath: 'App_Resources',
   android: {

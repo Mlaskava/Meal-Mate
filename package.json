@@ -1,5 +1,5 @@
 {
-  "name": "DietHelper",
+  "name": "meal-mate",
   "main": "./src/main.ts",
   "version": "1.0.0",
   "private": true,
@@ -14,13 +14,16 @@
     "@angular/router": "~16.2.0",
     "@nativescript/angular": "^16.0.0",
     "@nativescript/core": "~8.6.0",
+    "@nativescript/schematics": "^11.2.0",
     "@nativescript/theme": "~3.0.2",
+    "@triniwiz/nativescript-image-cache-it": "^7.5.0",
     "rxjs": "~7.8.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~16.2.0",
     "@angular/compiler-cli": "~16.2.0",
+    "@nativescript/android": "8.6.2",
     "@nativescript/types": "~8.6.0",
     "@nativescript/webpack": "~5.0.18",
     "@ngtools/webpack": "~16.2.0",
