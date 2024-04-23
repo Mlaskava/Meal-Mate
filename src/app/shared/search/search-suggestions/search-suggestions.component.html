@@ -1,0 +1,17 @@
+<ListView *ngIf="isListVisible(searchType)" [items]="(searchType === 'recipes' ? recipes : tags) | async"
+          [height]="1500">
+    <ng-template let-item="item">
+        <GridLayout [ngSwitch]="searchType">
+            <StackLayout *ngSwitchCase="'recipes'" orientation="horizontal" height="100">
+                <Image [src]="item.imageUrl" width="100"></Image>
+                <Label fontSize="20" textWrap="true" (tap)="showDetails(item.id )">{{ item.name }}</Label>
+            </StackLayout>
+
+            <DockLayout *ngSwitchCase="'tags'">
+                <Label dock="left" fontSize="20" textWrap="true">{{ item }}</Label>
+                <Image dock="right" width="40" src="~/app/assets/add.png"
+                       [backgroundColor]="getColor('searchSuggestions')"></Image>
+            </DockLayout>
+        </GridLayout>
+    </ng-template>
+</ListView>

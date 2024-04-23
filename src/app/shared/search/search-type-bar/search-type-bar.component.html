@@ -1,0 +1,6 @@
+<GridLayout columns="*, *" rows="auto" [backgroundColor]="getColor('searchSuggestions')">
+    <Label *ngFor="let labelName of LABEL_NAMES; index as idx" [id]="labelName" textAlignment="center" fontSize="23"
+           [col]="idx" row="0" (tap)="selected=labelName"
+           [backgroundColor]="selected === labelName ? getColor('searchBar') : getColor('searchSuggestions')"
+    >Search by {{ labelName }}</Label>
+</GridLayout>

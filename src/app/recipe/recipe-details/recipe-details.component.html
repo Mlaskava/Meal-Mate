@@ -1,1 +1,12 @@
-<p>recipe-details works!</p>
+<ng-container *ngIf="(recipe$ | async) as recipe else loading">
+    <StackLayout>
+        <Label fontSize="40" textWrap="true">{{ recipe.name }}</Label>
+        <Image [src]="recipe.imageUrl" width="800"></Image>
+        <Label fontSize="20" textWrap="true">{{ recipe.description }}</Label>
+    </StackLayout>
+</ng-container>
+<ng-template #loading>
+    <GridLayout>
+        <ActivityIndicator busy="true"></ActivityIndicator>
+    </GridLayout>
+</ng-template>

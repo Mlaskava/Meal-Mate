@@ -1,0 +1,16 @@
+GridLayout {
+    border-radius: 100px;
+    margin-top: 0;
+    width: 98%;
+}
+
+TextField {
+    border-bottom-color: transparent;
+    width: 70%;
+    font-size: 18%;
+}
+
+Image {
+    width: 10%;
+    margin: 0 2.5% 0 2.5%;
+}

@@ -1,26 +1,24 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from "rxjs";
-import { RecipeDto } from "../dto/recipe.dto";
+import { Recipe } from "~/app/recipe/model/recipe";
+import { RecipeService } from "~/app/recipe/service/recipe.service";
+import { NavigationService } from "~/app/shared/navigation/navigation.service";
 
 @Component({
-  selector: 'ns-recipe-list',
-  templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.css']
+    selector: 'ns-recipe-list',
+    templateUrl: './recipe-list.component.html',
+    styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent {
 
+    constructor(recipeService: RecipeService, private readonly navigationService: NavigationService) {
+        this.recipes$ = recipeService.recipeList$;
+    }
 
-  @Input()
-  set recipes$(recipes: Observable<RecipeDto[]>) {
-    this.recipes = recipes
-    this.recipes.subscribe(a => console.log(a[0].name))
-  }
+    @Input()
+    protected recipes$: Observable<Recipe[]>;
 
-  get recipes$() {
-    return this.recipes
-  }
-
-
-  recipes: Observable<RecipeDto[]>;
-
+    showDetails(id: number) {
+        this.navigationService.showDetailsPage(id);
+    }
 }

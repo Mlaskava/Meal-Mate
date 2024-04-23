@@ -1,0 +1,8 @@
+<StackLayout>
+    <TextField returnKeyType="search" #searchField [text]="searchFieldValue"
+               (textChange)="searchFieldValue=$event.value"
+               [backgroundColor]="getSearchBarColor('searchBar')"></TextField>
+    <ns-search-type-bar [(selected)]="searchType"></ns-search-type-bar>
+    <ns-search-suggestions [searchType]="searchType" [searchFieldValue]="searchFieldValue"
+                           [tags]="tags" [recipes]="recipes"></ns-search-suggestions>
+</StackLayout>

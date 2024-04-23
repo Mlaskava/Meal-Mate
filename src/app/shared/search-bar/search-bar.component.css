@@ -1,9 +1,0 @@
-GridLayout {
-    background-color: BLACK;
-    border-radius: 50px;
-}
-
-/*//@TODO dark mode, light mode handling*/
-TextField {
-    border-bottom-color: transparent;
-}

@@ -1,7 +1,6 @@
 {
   "version": 1,
   "cli": {
-    "defaultCollection": "@nativescript/schematics",
     "analytics": false
   },
   "projects": {
@@ -11,6 +10,5 @@
       "projectType": "application",
       "prefix": "ns"
     }
-  },
-  "defaultProject": "DietHelper"
+  }
 }

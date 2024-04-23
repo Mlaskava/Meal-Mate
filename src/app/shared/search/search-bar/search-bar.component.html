@@ -1,0 +1,5 @@
+<GridLayout columns="*, 7*, *" rows="60" [backgroundColor]="getSearchBarColor('searchBar')">
+    <Image col="0" src="~/app/assets/menu.png"></Image>
+    <TextField col="1" editable="false" hint="Search for recipes" (tap)="goToSearchPage()"></TextField>
+    <Image col="2" src="~/app/assets/shuffle.png" (tap)="goToRandomRecipe()"></Image>
+</GridLayout>

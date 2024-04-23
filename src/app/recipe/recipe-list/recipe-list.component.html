@@ -1,10 +1,19 @@
-<ListView [items]="recipes$ | async" height="1500">
-    <ng-template let-recipe="item">
-        <StackLayout>
-            <Label fontSize="30" textWrap="true">{{ recipe.name }}</Label>
-            <Image [src]="recipe.thumbnail_url" height="200" width="800" stretch="aspectFill"></Image>
-            <ns-tags-list [tags]="recipe.tags"></ns-tags-list>
+<ng-container *ngIf="recipes$ | async as recipes else loading">
+    <ListView [items]="recipes" height="1500">
+        <ng-template let-recipe="item">
+            <ng-container>
+                <StackLayout (tap)="showDetails(recipe.id)">
+                    <Label fontSize="30" textWrap="true">{{ recipe.name }}</Label>
+                    <Image [src]="recipe.imageUrl" height="200" width="800" stretch="aspectFill"></Image>
+                    <ns-tags-list [tags]="recipe.tags"></ns-tags-list>
+                </StackLayout>
+            </ng-container>
+        </ng-template>
+    </ListView>
+</ng-container>
 
-        </StackLayout>
-    </ng-template>
-</ListView>
+<ng-template #loading>
+    <AbsoluteLayout>
+        <ActivityIndicator [busy]="(recipes$ | async)"></ActivityIndicator>
+    </AbsoluteLayout>
+</ng-template>

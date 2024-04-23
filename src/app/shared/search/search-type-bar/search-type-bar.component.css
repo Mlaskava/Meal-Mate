@@ -1,0 +1,8 @@
+GridLayout {
+    border-radius: 10px;
+    width: 96%;
+}
+
+Label {
+    border-radius: 10px;
+}

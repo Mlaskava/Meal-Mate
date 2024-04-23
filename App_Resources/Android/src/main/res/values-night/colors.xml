@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <color name="ns_primary">#FFFFFF</color>
+    <color name="ns_primaryDark">#555555</color>
+    <color name="ns_accent">#65ADF1</color>
+
+    <color name="appBackground">#151515</color>
+
+    <color name="searchBarColor">#353535</color>
+
+    <color name="searchSuggestionsColor">#555555</color>
+
+    <bool name="uiLightMode">false</bool>
+</resources>
