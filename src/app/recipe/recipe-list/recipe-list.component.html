@@ -5,7 +5,7 @@
                 <StackLayout (tap)="showDetails(recipe.id)">
                     <Label fontSize="30" textWrap="true">{{ recipe.name }}</Label>
                     <Image [src]="recipe.imageUrl" height="200" width="800" stretch="aspectFill"></Image>
-                    <ns-tags-list [tags]="recipe.tags"></ns-tags-list>
+                    <mm-tags-list [tags]="recipe.tags"></mm-tags-list>
                 </StackLayout>
             </ng-container>
         </ng-template>

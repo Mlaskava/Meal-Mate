@@ -1,5 +1,8 @@
-<WrapLayout>
-    <ng-container *ngFor="let tag of tags">
-        <Label>{{ tag.name }}</Label>
+<WrapLayout [class]="editable ? 'editableLayout' : ''">
+    <ng-container *ngFor="let tagName of tagNames">
+        <FlexboxLayout [backgroundColor]="getColor('searchBar')">
+            <Label>{{ tagName }}</Label>
+            <Image *ngIf="editable" src="~/assets/close.png" (tap)="removeTag(tagName)"></Image>
+        </FlexboxLayout>
     </ng-container>
 </WrapLayout>

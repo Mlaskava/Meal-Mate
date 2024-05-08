@@ -26,6 +26,6 @@ typings/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-/src/app/assets/api-data.json
-/src/app/assets/mocked-recipes.response.json
-/src/app/assets/mocked-tags.response.json
+/src/assets/api-data.json
+/src/assets/mocked-recipes.response.json
+/src/assets/mocked-tags.response.json

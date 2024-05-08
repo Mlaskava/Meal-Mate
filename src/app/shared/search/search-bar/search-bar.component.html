@@ -1,5 +1,12 @@
-<GridLayout columns="*, 7*, *" rows="60" [backgroundColor]="getSearchBarColor('searchBar')">
-    <Image col="0" src="~/app/assets/menu.png"></Image>
-    <TextField col="1" editable="false" hint="Search for recipes" (tap)="goToSearchPage()"></TextField>
-    <Image col="2" src="~/app/assets/shuffle.png" (tap)="goToRandomRecipe()"></Image>
+<GridLayout [class]="searchActive ? 'activeSearch' : 'inactiveSearch'" columns="*, 7*, *" rows="60"
+            [backgroundColor]="getSearchBarColor('searchBar')">
+    <Image *ngIf="isOnHomePage" col="0" src="~/assets/menu.png"></Image>
+    <Image *ngIf="!isOnHomePage" col="0" src="~/assets/back.png" (tap)="navigationService.goToHomePage()"></Image>
+    <TextField *ngIf="searchActive" col="1" id="activeSearchField" #searchField returnKeyType="search"
+               [text]="searchFieldValue" (textChange)="searchFieldValue=$event.value"
+               (returnPress)="submitSearch($event)"></TextField>
+
+    <Label *ngIf="!searchActive" id="inactiveSearchField" col="1"
+           (tap)="goToSearchPage()">{{isOnHomePage ? 'Search for recipes' : searchFieldValue}}</Label>
+    <Image col="2" src="~/assets/shuffle.png" (tap)="goToRandomRecipe()"></Image>
 </GridLayout>

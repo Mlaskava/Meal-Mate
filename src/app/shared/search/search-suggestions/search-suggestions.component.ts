@@ -1,38 +1,45 @@
-import { Component, Input } from '@angular/core';
-import { NavigationService } from "~/app/shared/navigation/navigation.service";
-import { Recipe } from "~/app/recipe/model/recipe";
-import { Observable } from "rxjs";
-import { getColor } from "~/app/shared/search/search-bar.color-helper";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NavigationService } from '~/app/shared/navigation/navigation.service';
+import { Recipe } from '~/app/recipe/model/recipe';
+import { Observable } from 'rxjs';
+import { getColor } from '~/app/shared/search/search-bar.color-helper';
 
 @Component({
-    selector: 'ns-search-suggestions',
-    templateUrl: './search-suggestions.component.html',
-    styleUrls: ['./search-suggestions.component.css']
+  selector: 'mm-search-suggestions',
+  templateUrl: './search-suggestions.component.html',
+  styleUrls: ['./search-suggestions.component.css']
 })
 export class SearchSuggestionsComponent {
 
-    constructor(private readonly navigationService: NavigationService) {
-    }
+  constructor(private readonly navigationService: NavigationService) {
+  }
 
-    @Input()
-    searchFieldValue: string;
+  @Input()
+  searchFieldValue: string;
 
-    @Input()
-    searchType: 'recipes' | 'tags';
+  @Input()
+  searchType: 'recipes' | 'tags';
 
-    @Input()
-    tags: Observable<string[]>;
+  @Input()
+  tags: Observable<string[]>;
 
-    @Input()
-    recipes: Observable<Recipe[]>;
+  @Input()
+  recipes: Observable<Recipe[]>;
 
-    showDetails(id: number) {
-        this.navigationService.showDetailsPage(id);
-    }
+  @Output()
+  tagSearchAdded: EventEmitter<string> = new EventEmitter<string>();
 
-    isListVisible(listType: 'recipes' | 'tags') {
-        return this.searchType === listType && !!this.searchFieldValue && this.searchFieldValue.length !== 0;
-    }
+  showDetails(id: number) {
+    this.navigationService.showDetailsPage(id);
+  }
 
-    protected readonly getColor = getColor;
+  addTag(tagName: string) {
+    this.tagSearchAdded.emit(tagName);
+  }
+
+  isListVisible(listType: 'recipes' | 'tags') {
+    return this.searchType === listType && !!this.searchFieldValue && this.searchFieldValue.length !== 0;
+  }
+
+  protected readonly getColor = getColor;
 }

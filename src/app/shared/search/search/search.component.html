@@ -1,8 +1,9 @@
 <StackLayout>
-    <TextField returnKeyType="search" #searchField [text]="searchFieldValue"
-               (textChange)="searchFieldValue=$event.value"
-               [backgroundColor]="getSearchBarColor('searchBar')"></TextField>
-    <ns-search-type-bar [(selected)]="searchType"></ns-search-type-bar>
-    <ns-search-suggestions [searchType]="searchType" [searchFieldValue]="searchFieldValue"
-                           [tags]="tags" [recipes]="recipes"></ns-search-suggestions>
+    <mm-search-bar [isOnHomePage]="false" [searchActive]="true" [(searchFieldValue)]="searchFieldValue"
+                   (searchSubmitted)="submitSearch($event)"></mm-search-bar>
+    <mm-search-type-bar [(selected)]="searchType"></mm-search-type-bar>
+    <mm-tags-list *ngIf="searchType === 'tags'" [editable]="true" [(tagNames)]="searchedTags"></mm-tags-list>
+    <mm-search-suggestions [searchType]="searchType" [searchFieldValue]="searchFieldValue"
+                           [tags]="tagNames" [recipes]="recipes"
+                           (tagSearchAdded)="addTag($event)"></mm-search-suggestions>
 </StackLayout>

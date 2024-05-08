@@ -4,13 +4,13 @@
     <color name="ns_primaryDark">#555555</color>
     <color name="ns_accent">#65ADF1</color>
 
-    <color name="appBackground">#F5F5F5</color>
+    <color name="appBackgroundColor">#F5F5F5</color>
     <!--used for backgroundTint override, should have value equal to appBackground from values-night/colors.xml-->
-    <color name="appBackgroundDark">#151515</color>
+    <color name="appBackgroundDarkColor">#151515</color>
 
-    <color name="searchBarColor">#E0E0E0</color>
+    <color name="searchBarColor">#D0D0D0</color>
 
-    <color name="searchSuggestionsColor">#EFEFEF</color>
+    <color name="searchSuggestionsColor">#DFDFDF</color>
 
     <bool name="uiLightMode">true</bool>
 </resources>

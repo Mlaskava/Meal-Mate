@@ -1,16 +1,28 @@
-GridLayout {
-    border-radius: 100px;
+#activeSearchField {
+    border-bottom-color: transparent;
+    font-size: 18%;
     margin-top: 0;
-    width: 98%;
+    margin: 0;
 }
 
-TextField {
-    border-bottom-color: transparent;
-    width: 70%;
+#inactiveSearchField {
     font-size: 18%;
+}
+
+GridLayout {
+    margin-top: 0;
+    width: 96%;
+}
+
+.activeSearch {
+    border-radius: 10px;
+}
+
+.inactiveSearch {
+    border-radius: 100px;
 }
 
 Image {
     width: 10%;
-    margin: 0 2.5% 0 2.5%;
+    margin: 0 3% 0 3%;
 }

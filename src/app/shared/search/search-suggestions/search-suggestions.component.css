@@ -1,4 +1,6 @@
 Image {
+    width: 30vw;
+    height: 30vh;
     stretch: aspectFill;
     border-radius: 10px;
 }

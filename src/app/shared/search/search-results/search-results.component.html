@@ -1,0 +1,30 @@
+<StackLayout>
+    <mm-search-bar [isOnHomePage]="false" [searchFieldValue]="searchFieldValue"></mm-search-bar>
+    <mm-tags-list *ngIf="searchTagValues" [editable]="true" [(tagNames)]="searchTagValues"></mm-tags-list>
+    <ng-container *ngIf="recipes$ | async as recipes">
+        <ListView *ngIf="recipes.length > 0" [items]="recipes" height="1500">
+            <ng-template let-recipe="item">
+                <ng-container>
+                    <StackLayout (tap)="showDetails(recipe.id)">
+                        <Label fontSize="30" textWrap="true">{{ recipe.name }}</Label>
+                        <Image [src]="recipe.imageUrl" height="200" width="800" stretch="aspectFill"></Image>
+                        <mm-tags-list [tags]="recipe.tags"></mm-tags-list>
+                    </StackLayout>
+                </ng-container>
+            </ng-template>
+        </ListView>
+
+        <GridLayout>
+            <StackLayout *ngIf="recipes.length === 0">
+                <Label textAlignment="center" fontSize="30" textWrap="true">No results for applied filters found</Label>
+                <Label textAlignment="center" fontSize="22" textWrap="true">Please change your search parameters</Label>
+            </StackLayout>
+        </GridLayout>
+    </ng-container>
+
+
+    <GridLayout *ngIf="!recipes$">
+        <ActivityIndicator [busy]="(recipes$ | async)"></ActivityIndicator>
+    </GridLayout>
+
+</StackLayout>

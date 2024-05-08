@@ -1,23 +1,32 @@
-import { Component, Input } from '@angular/core';
-import { Tag } from "~/app/recipe/model/recipe";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { getColor } from '~/app/shared/search/search-bar.color-helper';
+import { Tag } from '~/app/recipe/model/tag';
 
 @Component({
-    selector: 'ns-tags-list',
-    templateUrl: './tags-list.component.html',
-    styleUrls: ['./tags-list.component.css']
+  selector: 'mm-tags-list',
+  templateUrl: './tags-list.component.html',
+  styleUrls: ['./tags-list.component.css']
 })
 export class TagsListComponent {
 
-    private readonly USED_TAGS = ['cuisine', 'meal', 'cooking_style', 'dietary', 'difficulty', 'appliance', 'healthy'];
+  @Input()
+  editable = false;
 
-    private _tags: Tag[];
+  @Input()
+  set tags(tags: Tag[]) {
+    this.tagNames = tags.map(tag => tag.name);
+  }
 
-    @Input()
-    set tags(tags: Tag[]) {
-        this._tags = tags.filter(tag => this.USED_TAGS.includes(tag.type));
-    }
+  @Input()
+  tagNames: string[];
 
-    get tags(): Tag[] {
-        return this._tags;
-    }
+  @Output()
+  tagNamesChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+
+  removeTag(tagToRemove: string) {
+    this.tagNames = this.tagNames.filter(tag => tag !== tagToRemove);
+    this.tagNamesChange.emit(this.tagNames);
+  }
+
+  protected readonly getColor = getColor;
 }

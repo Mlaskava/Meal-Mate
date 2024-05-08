@@ -5,10 +5,16 @@
   },
   "projects": {
     "my-project-name": {
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "css",
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "ns"
+      "prefix": "mm"
     }
   }
 }

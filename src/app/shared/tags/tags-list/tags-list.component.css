@@ -1,0 +1,22 @@
+.editableLayout {
+    margin-bottom: 3vh;
+    width: 96%;
+}
+
+FlexboxLayout {
+    margin: 5vh 5vw 0 0;
+    border-radius: 40px;
+}
+
+Label {
+    margin: 0 5vw 0 5vw;
+}
+
+Label + Image {
+    margin-right: 1vw;
+}
+
+Image {
+    width: 5%;
+    margin-right: 2vw;
+}
