@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NavigationService } from '~/app/shared/navigation/navigation.service';
-import { Recipe } from '~/app/recipe/model/recipe';
+import { RecipeListingItem } from '~/app/recipe/model/recipe-listing-item';
 import { Observable } from 'rxjs';
 import { getColor } from '~/app/shared/search/search-bar.color-helper';
 
@@ -24,7 +24,7 @@ export class SearchSuggestionsComponent {
   tags: Observable<string[]>;
 
   @Input()
-  recipes: Observable<Recipe[]>;
+  recipes: Observable<RecipeListingItem[]>;
 
   @Output()
   tagSearchAdded: EventEmitter<string> = new EventEmitter<string>();

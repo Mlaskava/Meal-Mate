@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Recipe } from '~/app/recipe/model/recipe';
+import { RecipeListingItem } from '~/app/recipe/model/recipe-listing-item';
 import { RecipeService } from '~/app/recipe/service/recipe.service';
 import { NavigationService } from '~/app/shared/navigation/navigation.service';
 
@@ -16,7 +16,7 @@ export class RecipeListComponent {
   }
 
   @Input()
-  protected recipes$: Observable<Recipe[]>;
+  protected recipes$: Observable<RecipeListingItem[]>;
 
   showDetails(id: number) {
     this.navigationService.showDetailsPage(id);

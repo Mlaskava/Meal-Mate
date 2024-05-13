@@ -14,7 +14,7 @@ export class NavigationService {
     this.router.navigate(['details', {id: id}]).catch();
   }
 
-  goToSearchPage(searchValue: string | string[] = '') {
+  goToSearchPage(searchValue: string | string[]) {
     this.router.navigate(['search'], {
       queryParams: {searchValue: searchValue}
     }).catch();
@@ -22,7 +22,8 @@ export class NavigationService {
 
   search(searchValue: string | string[]) {
     this.router.navigate(['searchResults'], {
-      queryParams: {searchValue: searchValue}
+      queryParams: {searchValue: searchValue},
+      replaceUrl: true
     }).catch();
   }
 
@@ -32,8 +33,11 @@ export class NavigationService {
     }).catch();
   }
 
+  goBack() {
+    this.router.back();
+  }
+
   getQueryParam(paramName: string): string | string[] {
     return this.activatedRoute.snapshot.queryParams[paramName];
-
   }
 }

@@ -1,10 +1,9 @@
-import { Ingredient } from '~/app/recipe/model/ingredient';
-import { Tag } from '~/app/recipe/model/tag';
+import { Ingredient } from './ingredient';
 
 export interface Recipe {
   readonly id: number;
   readonly name: string;
-  readonly tags: Tag[];
+  readonly tags: string[];
   readonly imageUrl: string;
   readonly description: string;
   readonly instructions: string[];

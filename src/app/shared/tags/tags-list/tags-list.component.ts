@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { getColor } from '~/app/shared/search/search-bar.color-helper';
-import { Tag } from '~/app/recipe/model/tag';
 
 @Component({
   selector: 'mm-tags-list',
@@ -13,19 +12,18 @@ export class TagsListComponent {
   editable = false;
 
   @Input()
-  set tags(tags: Tag[]) {
-    this.tagNames = tags.map(tag => tag.name);
+  set tags(tags: string[] | string) {
+    this._tags = Array.isArray(tags) ? tags : [tags];
   }
 
-  @Input()
-  tagNames: string[];
+  _tags: string[];
 
   @Output()
-  tagNamesChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+  tagsChange: EventEmitter<string[] | string> = new EventEmitter<string[] | string>();
 
   removeTag(tagToRemove: string) {
-    this.tagNames = this.tagNames.filter(tag => tag !== tagToRemove);
-    this.tagNamesChange.emit(this.tagNames);
+    this._tags = this._tags.filter(tag => tag !== tagToRemove);
+    this.tagsChange.emit(this._tags);
   }
 
   protected readonly getColor = getColor;
