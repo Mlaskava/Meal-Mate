@@ -2,8 +2,8 @@
     <mm-search-bar [isOnHomePage]="false" [searchActive]="true" [(searchFieldValue)]="searchFieldValue"
                    (searchSubmitted)="submitSearch($event)"></mm-search-bar>
     <mm-search-type-bar [(selected)]="searchType"></mm-search-type-bar>
-    <mm-tags-list *ngIf="searchType === 'tags'" [editable]="true" [(tags)]="searchedTags"></mm-tags-list>
-    <mm-search-suggestions [searchType]="searchType" [searchFieldValue]="searchFieldValue"
+    <mm-tags-list *ngIf="_searchType === 'tags'" [editable]="true" [(tags)]="searchedTags"></mm-tags-list>
+    <mm-search-suggestions [searchType]="_searchType" [searchFieldValue]="searchFieldValue"
                            [tags]="suggestedTags" [recipes]="recipes"
                            (tagSearchAdded)="addTag($event)"></mm-search-suggestions>
 </StackLayout>

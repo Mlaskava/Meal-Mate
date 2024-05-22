@@ -1,0 +1,9 @@
+<AbsoluteLayout>
+    <Image [src]="imageUrl" (tap)="navigationService.showImage(imageUrl, recipeName)"></Image>
+    <GridLayout columns="*, 4*, *">
+        <Image col="0" class="icon"
+               src="~/assets/add-to-shopping-list.png" (tap)="$event.stopPropagation()"></Image>
+        <Image col="2" class="icon"
+               src="~/assets/favorite.png" (tap)="$event.stopPropagation()"></Image>
+    </GridLayout>
+</AbsoluteLayout>

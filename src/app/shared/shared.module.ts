@@ -4,20 +4,22 @@ import { SearchBarComponent } from '~/app/shared/search/search-bar/search-bar.co
 import { CommonModule } from '@angular/common';
 import { NativeScriptModule } from '@nativescript/angular';
 import { TagsService } from '~/app/shared/tags/tags.service';
-import { SearchComponent } from '~/app/shared/search/search/search.component';
+import { SearchPageComponent } from '~/app/shared/search/search-page/search-page.component';
 import { SearchTypeBarComponent } from '~/app/shared/search/search-type-bar/search-type-bar.component';
 import { SearchSuggestionsComponent } from '~/app/shared/search/search-suggestions/search-suggestions.component';
 import { NavigationService } from '~/app/shared/navigation/navigation.service';
 import { SearchResultsComponent } from './search/search-results/search-results.component';
+import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 
 @NgModule({
   declarations: [
     TagsListComponent,
     SearchBarComponent,
-    SearchComponent,
+    SearchPageComponent,
     SearchTypeBarComponent,
     SearchSuggestionsComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    IngredientListComponent
   ],
   providers: [
     TagsService,
@@ -30,9 +32,10 @@ import { SearchResultsComponent } from './search/search-results/search-results.c
   exports: [
     SearchBarComponent,
     TagsListComponent,
-    SearchComponent,
+    SearchPageComponent,
     SearchTypeBarComponent,
-    SearchSuggestionsComponent
+    SearchSuggestionsComponent,
+    IngredientListComponent
   ]
 })
 export class SharedModule {

@@ -4,14 +4,16 @@ import { NativeScriptRouterModule } from '@nativescript/angular';
 
 import { HomePageComponent } from '~/app/home-page/home-page.component';
 import { RecipeDetailsComponent } from '~/app/recipe/recipe-details/recipe-details.component';
-import { SearchComponent } from '~/app/shared/search/search/search.component';
+import { SearchPageComponent } from '~/app/shared/search/search-page/search-page.component';
 import { SearchResultsComponent } from '~/app/shared/search/search-results/search-results.component';
+import { ImageComponent } from '~/app/recipe/image/image.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'details', component: RecipeDetailsComponent},
-  {path: 'search', component: SearchComponent},
-  {path: 'searchResults', component: SearchResultsComponent}
+  {path: 'image', component: ImageComponent},
+  {path: 'search-page', component: SearchPageComponent},
+  {path: 'search-results/:id', component: SearchResultsComponent}
 ];
 
 @NgModule({

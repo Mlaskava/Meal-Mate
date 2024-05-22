@@ -59,7 +59,7 @@ export class SearchBarComponent implements AfterViewInit {
   }
 
   goToSearchPage() {
-    this.navigationService.goToSearchPage(this.navigationService.getQueryParam('searchValue'));
+    this.navigationService.goToSearchPage(this.searchFieldValue, this.navigationService.getQueryParamAsArray('searchTags'));
   }
 
   protected readonly getSearchBarColor = getColor;

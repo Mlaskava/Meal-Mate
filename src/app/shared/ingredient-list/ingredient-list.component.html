@@ -1,0 +1,7 @@
+<StackLayout>
+    <Label fontSize="30">Ingredients:</Label>
+    <StackLayout class="ingredients-list">
+        <Label [class]="!last ? 'ingredient-listing' : ''" *ngFor="let ingredient of _ingredients; let last = last" fontSize="20"
+               textWrap="true">{{ getDisplayLabel(ingredient) }}</Label>
+    </StackLayout>
+</StackLayout>

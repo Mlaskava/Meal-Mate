@@ -1,4 +1,4 @@
-<ListView *ngIf="isListVisible(searchType)" [items]="(searchType === 'recipes' ? recipes : tags) | async"
+<ListView *ngIf="isListVisible()" [items]="(searchType === 'recipes' ? recipes : tags) | async"
           [height]="1500">
     <ng-template let-item="item">
         <GridLayout [ngSwitch]="searchType">

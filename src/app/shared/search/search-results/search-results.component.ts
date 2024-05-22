@@ -12,9 +12,8 @@ import { equalsIgnoreCase, isSubstring } from '~/app/shared/comparision/compare-
 })
 export class SearchResultsComponent implements OnInit {
 
-  readonly Array = Array;
-
-  _searchedValue: string | string[];
+  searchFieldValue: string;
+  _searchedTags: string[];
 
   recipes$: Observable<RecipeListingItem[]> = this.recipeService.recipeList$;
 
@@ -22,40 +21,30 @@ export class SearchResultsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchedValue = this.navigationService.getQueryParam('searchValue');
+    this.searchFieldValue = this.navigationService.getQueryParam('searchFieldValue');
+    this._searchedTags = this.navigationService.getQueryParamAsArray('searchTags');
+    if (this._searchedTags.length > 0) {
+      this.recipes$ = this.recipes$.pipe(map(recipes => recipes.filter(recipe =>
+        this._searchedTags.every(searchedTag =>
+          !!recipe.tags.find(tag => equalsIgnoreCase(tag, searchedTag)
+            || !!recipe.ingredientNames.find(ingredient => equalsIgnoreCase(ingredient, searchedTag)))))));
+    } else {
+      this.recipes$ = this.recipes$.pipe(map(recipes => recipes.filter(recipe =>
+        isSubstring(this.searchFieldValue as string, recipe.name))));
+    }
+    this.recipes$ = this.recipes$.pipe(map(recipes => recipes.sort((recipe1, recipe2) => recipe1.name.length - recipe2.name.length)));
   }
 
-  set searchedValue(searchValue: string[] | string) {
-    this._searchedValue = searchValue;
-    this.reapplyFilters();
-  }
-
-  get searchedValue() {
-    return this._searchedValue;
-  }
-
-  reapplyFilters() {
-    if (!!this._searchedValue) {
-      this.recipes$ = this.recipes$.pipe(map(recipes => {
-        if (Array.isArray(this._searchedValue)) {
-          if (this._searchedValue.length > 0) {
-            return recipes.filter(recipe => (this._searchedValue as string[]).every(searchedTag =>
-              !!recipe.tags.find(tag => equalsIgnoreCase(tag, searchedTag)
-                || !!recipe.ingredientNames.find(ingredient => equalsIgnoreCase(ingredient, searchedTag)))));
-          } else {
-            this.navigationService.goToSearchPage([]);
-          }
-        } else {
-          return recipes.filter(recipe => {
-            return isSubstring(this._searchedValue as string, recipe.name);
-          });
-        }
-      }));
+  set searchedTags(searchedTags: string[]) {
+    if (searchedTags.length > 0) {
+      this.navigationService.searchByTags(searchedTags, false, true);
+    } else {
+      this.navigationService.goToSearchPage('', searchedTags, true);
     }
   }
 
-  getSearchFieldValue() {
-    return Array.isArray(this._searchedValue) ? '' : this._searchedValue;
+  get searchedTags(): string[] {
+    return this._searchedTags;
   }
 
   showDetails(id: number) {

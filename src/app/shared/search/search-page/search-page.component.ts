@@ -2,19 +2,30 @@ import { Component, Input, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { RecipeListingItem } from '~/app/recipe/model/recipe-listing-item';
 import { RecipeService } from '~/app/recipe/service/recipe.service';
-import { TagsService } from '~/app/shared/tags/tags.service';
-import { NavigationService } from '~/app/shared/navigation/navigation.service';
-import { isSubstring } from '~/app/shared/comparision/compare-util';
+import { TagsService } from '../../tags/tags.service';
+import { NavigationService } from '../../navigation/navigation.service';
+import { isSubstring } from '../../comparision/compare-util';
 
 @Component({
-  selector: 'mm-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  selector: 'mm-search-page',
+  templateUrl: './search-page.component.html',
+  styleUrls: ['./search-page.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchPageComponent implements OnInit {
 
   @Input()
-  searchType: 'recipes' | 'tags';
+  _searchType: 'recipes' | 'tags';
+
+  //TODO maybe simplify obtaining searchType(base it on tags length)
+
+  get searchType() {
+    return this._searchType;
+  }
+
+  set searchType(searchType: 'recipes' | 'tags') {
+    this._searchType = searchType;
+    this.reapplyFilters(searchType);
+  }
 
   recipes: Observable<RecipeListingItem[]>;
   allTagNames: Observable<string[]> = this.tagsService.tagList$;
@@ -25,21 +36,21 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    const searchValue = this.navigationService.getQueryParam('searchValue') || '';
-    if (Array.isArray(searchValue)) {
-      this._searchedTags = searchValue;
+    const searchTags = this.navigationService.getQueryParamAsArray('searchTags');
+    if (searchTags.length > 0) {
+      this._searchedTags = searchTags;
       this._searchFieldValue = '';
-      this.searchType = 'tags';
+      this._searchType = 'tags';
     } else {
-      this._searchFieldValue = searchValue;
-      this.searchType = 'recipes';
+      this._searchFieldValue = this.navigationService.getQueryParam('searchFieldValue') || '';
+      this._searchType = 'recipes';
     }
 
   }
 
   set searchedTags(searchedTags: string[]) {
     this._searchedTags = searchedTags;
-    this.reapplyFilters(this.searchType);
+    this.reapplyFilters(this._searchType);
   }
 
   get searchedTags(): string[] {
@@ -50,9 +61,9 @@ export class SearchComponent implements OnInit {
 
   private _searchFieldValue: string = '';
 
-  set searchFieldValue(nameSearchValue: string) {
-    this._searchFieldValue = nameSearchValue;
-    this.reapplyFilters(this.searchType);
+  set searchFieldValue(searchFieldValue: string) {
+    this._searchFieldValue = searchFieldValue;
+    this.reapplyFilters(this._searchType);
   }
 
   get searchFieldValue(): string {
@@ -73,10 +84,10 @@ export class SearchComponent implements OnInit {
   }
 
   submitSearch(searchFieldValue: string) {
-    if (this.searchType === 'recipes') {
-      this.navigationService.search(searchFieldValue);
-    } else {
-      this.navigationService.search(this._searchedTags);
+    if (this._searchType === 'recipes') {
+      this.navigationService.searchByRecipe(searchFieldValue);
+    } else if (this._searchedTags.length > 0) {
+      this.navigationService.searchByTags(this._searchedTags);
     }
   }
 

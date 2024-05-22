@@ -1,6 +1,6 @@
 <StackLayout>
-    <mm-search-bar [isOnHomePage]="false" [searchFieldValue]="getSearchFieldValue()"></mm-search-bar>
-    <mm-tags-list *ngIf="Array.isArray(searchedValue)" [editable]="true" [(tags)]="searchedValue"></mm-tags-list>
+    <mm-search-bar [isOnHomePage]="false" [searchFieldValue]="searchFieldValue"></mm-search-bar>
+    <mm-tags-list [editable]="true" [(tags)]="searchedTags"></mm-tags-list>
     <ng-container *ngIf="recipes$ | async as recipes">
         <ListView *ngIf="recipes.length > 0" [items]="recipes" height="1500">
             <ng-template let-recipe="item">

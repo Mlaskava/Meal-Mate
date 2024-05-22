@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TagsService {
 
-  tagList$: Observable<string[]> = this.httpClient.get<string[]>('tags');
+  tagList$: Observable<string[]> = this.httpClient.get<string[]>('tags').pipe(shareReplay(1));
 
   constructor(private readonly httpClient: HttpClient) {
   }

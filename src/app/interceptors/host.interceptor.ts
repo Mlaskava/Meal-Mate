@@ -7,9 +7,14 @@ import API_DATA from '~/assets/api-data.json';
 @Injectable()
 export class HostInterceptor implements HttpInterceptor {
 
-  //TODO emulator/deviceDev/deviceProd requests
+
+  isEmulator(): boolean {
+    return android.os.Build.MODEL.includes('sdk_gphone');
+  }
+
+  readonly API_URL = this.isEmulator() ? API_DATA.LOCALHOST : API_DATA.CLOUD;
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req.clone({url: `http://${API_DATA.HOST}/${req.url}`}));
+    return next.handle(req.clone({url: `${this.API_URL}/${req.url}`}));
   }
 }

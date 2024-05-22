@@ -12,18 +12,13 @@ export class TagsListComponent {
   editable = false;
 
   @Input()
-  set tags(tags: string[] | string) {
-    this._tags = Array.isArray(tags) ? tags : [tags];
-  }
-
-  _tags: string[];
+  tags: string[];
 
   @Output()
-  tagsChange: EventEmitter<string[] | string> = new EventEmitter<string[] | string>();
+  tagsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   removeTag(tagToRemove: string) {
-    this._tags = this._tags.filter(tag => tag !== tagToRemove);
-    this.tagsChange.emit(this._tags);
+    this.tagsChange.emit(this.tags.filter(tag => tag !== tagToRemove));
   }
 
   protected readonly getColor = getColor;

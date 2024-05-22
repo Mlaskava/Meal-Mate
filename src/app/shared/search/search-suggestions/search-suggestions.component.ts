@@ -37,8 +37,8 @@ export class SearchSuggestionsComponent {
     this.tagSearchAdded.emit(tagName);
   }
 
-  isListVisible(listType: 'recipes' | 'tags') {
-    return this.searchType === listType && !!this.searchFieldValue && this.searchFieldValue.length !== 0;
+  isListVisible() {
+    return this.searchType === 'tags' || this.searchFieldValue.length > 0;
   }
 
   protected readonly getColor = getColor;

@@ -7,16 +7,17 @@ import { HomePageComponent } from '~/app/home-page/home-page.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '~/app/shared/shared.module';
 import { RecipeModule } from '~/app/recipe/recipe.module';
-import { Router } from '@angular/router';
+import { Router, RouteReuseStrategy } from '@angular/router';
 import { HostInterceptor } from '~/app/interceptors/host.interceptor';
+import { AppRouteReuseStrategy } from '~/app/route-reuse.strategy';
 
 @NgModule({
   bootstrap: [AppComponent],
   imports: [NativeScriptModule, AppRoutingModule, HttpClientModule, SharedModule, RecipeModule],
   declarations: [AppComponent, HomePageComponent],
   providers: [HttpClient, Router,
-    {provide: HTTP_INTERCEPTORS, useClass: HostInterceptor, multi: true}
-
+    {provide: HTTP_INTERCEPTORS, useClass: HostInterceptor, multi: true},
+    {provide: RouteReuseStrategy, useClass: AppRouteReuseStrategy}
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

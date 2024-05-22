@@ -1,8 +1,13 @@
 <ng-container *ngIf="(recipe$ | async) as recipe else loading">
     <StackLayout>
-        <Label fontSize="40" textWrap="true">{{ recipe.name }}</Label>
-        <Image [src]="recipe.imageUrl" width="800"></Image>
-        <Label fontSize="20" textWrap="true">{{ recipe.description }}</Label>
+        <mm-recipe-details-header [imageUrl]="recipe.imageUrl" [recipeName]="recipe.name"></mm-recipe-details-header>
+        <ScrollView>
+            <StackLayout>
+                <Label fontSize="35" textWrap="true" fontWeight="bold">{{ recipe.name }}</Label>
+                <Label *ngIf="recipe.description" fontSize="20" textWrap="true">{{ recipe.description }}</Label>
+                <mm-ingredient-list [ingredients]="recipe.ingredients"></mm-ingredient-list>
+            </StackLayout>
+        </ScrollView>
     </StackLayout>
 </ng-container>
 <ng-template #loading>
