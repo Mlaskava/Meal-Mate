@@ -7,7 +7,7 @@ import { SearchTypeBarComponent } from '~/app/search/search-type-bar/search-type
 import { SearchSuggestionsComponent } from '~/app/search/search-suggestions/search-suggestions.component';
 import { SearchResultsComponent } from '~/app/search/search-results/search-results.component';
 import { NavigationService } from '~/app/navigation/navigation.service';
-import { TagsListComponent } from '~/app/tags/tags-list/tags-list.component';
+import { TagsModule } from '~/app/tags/tags.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { TagsListComponent } from '~/app/tags/tags-list/tags-list.component';
   imports: [
     CommonModule,
     NativeScriptModule,
-    TagsListComponent
+    TagsModule
   ],
   exports: [
     SearchBarComponent,

@@ -7,8 +7,7 @@ import { NavigationService } from '~/app/navigation/navigation.service';
 
 @Component({
   selector: 'mm-recipe-details',
-  templateUrl: './recipe-details.component.html',
-  styleUrls: ['./recipe-details.component.css']
+  templateUrl: './recipe-details.component.html'
 })
 export class RecipeDetailsComponent {
 

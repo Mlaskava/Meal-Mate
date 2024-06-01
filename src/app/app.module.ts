@@ -10,13 +10,13 @@ import { Router, RouteReuseStrategy } from '@angular/router';
 import { HostInterceptor } from '~/app/interceptors/host.interceptor';
 import { AppRouteReuseStrategy } from '~/app/route-reuse.strategy';
 import { SearchModule } from '~/app/search/search.module';
-import { TagsService } from '~/app/tags/tags.service';
+import { TagsModule } from '~/app/tags/tags.module';
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, AppRoutingModule, HttpClientModule, SearchModule, RecipeModule],
+  imports: [NativeScriptModule, AppRoutingModule, HttpClientModule, SearchModule, RecipeModule, TagsModule],
   declarations: [AppComponent, HomePageComponent],
-  providers: [HttpClient, Router, TagsService,
+  providers: [HttpClient, Router,
     {provide: HTTP_INTERCEPTORS, useClass: HostInterceptor, multi: true},
     {provide: RouteReuseStrategy, useClass: AppRouteReuseStrategy}
   ],

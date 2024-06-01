@@ -4,11 +4,23 @@
             <Label fontSize="35" textWrap="true" fontWeight="bold">{{ recipe.name }}</Label>
             <mm-recipe-details-header [imageUrl]="recipe.imageUrl"
                                       [recipeName]="recipe.name"></mm-recipe-details-header>
-            <Label fontSize="20" *ngIf="recipe.description" textWrap="false">{{ recipe.description }}</Label>
-            <mm-ingredient-list [servings]="recipe.servings" [ingredients]="recipe.ingredients"></mm-ingredient-list>
-            <mm-serving-picker [(servings)]="recipe.servings"></mm-serving-picker>
-            <mm-nutrition [servings]="recipe.servings" [nutrition]="recipe.nutritionInformation"></mm-nutrition>
-            <mm-preparation-instructions [instructions]="recipe.instructions"></mm-preparation-instructions>
+            <mm-content *ngIf="recipe.description" title="Description">
+                <Label fontSize="20" textWrap="false">{{ recipe.description }}</Label>
+            </mm-content>
+            <mm-content title="Ingredients">
+                <mm-ingredient-list [servings]="recipe.servings"
+                                    [ingredients]="recipe.ingredients"></mm-ingredient-list>
+            </mm-content>
+            <mm-content [contentInline]="true">
+                <mm-serving-picker [(servings)]="recipe.servings"></mm-serving-picker>
+            </mm-content>
+            <mm-content title="Nutrition" [contentVisible]="false">
+                <mm-nutrition [servings]="recipe.servings" [nutrition]="recipe.nutritionInformation"></mm-nutrition>
+            </mm-content>
+            <mm-content title="Preparation">
+                <mm-preparation-instructions [instructions]="recipe.instructions"></mm-preparation-instructions>
+            </mm-content>
+
         </StackLayout>
     </ScrollView>
 </ng-container>

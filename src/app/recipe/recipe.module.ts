@@ -11,7 +11,8 @@ import { NutritionComponent } from './nutrition/nutrition.component';
 import { ServingPickerComponent } from '~/app/recipe/serving-picker/serving-picker.component';
 import { IngredientListComponent } from '~/app/recipe/ingredient-list/ingredient-list.component';
 import { SearchModule } from '~/app/search/search.module';
-import { TagsListComponent } from '~/app/tags/tags-list/tags-list.component';
+import { ContentComponent } from '~/app/content/content.component';
+import { TagsModule } from '~/app/tags/tags.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { TagsListComponent } from '~/app/tags/tags-list/tags-list.component';
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
-  imports: [SearchModule, ImageCacheItModule, AsyncPipe, NativeScriptCommonModule, TagsListComponent],
+  imports: [SearchModule, ImageCacheItModule, AsyncPipe, NativeScriptCommonModule, TagsModule, ContentComponent],
   exports: [
     RecipeListComponent
   ]

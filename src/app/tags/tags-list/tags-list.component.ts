@@ -1,17 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { getColor } from '~/app/search/search-bar.color-helper';
-import { CommonModule } from '@angular/common';
-import { NativeScriptModule } from '@nativescript/angular';
 
 @Component({
   selector: 'mm-tags-list',
   templateUrl: './tags-list.component.html',
-  styleUrls: ['./tags-list.component.css'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    NativeScriptModule
-  ]
+  styleUrls: ['./tags-list.component.css']
 })
 export class TagsListComponent {
 

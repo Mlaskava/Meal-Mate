@@ -9,7 +9,7 @@
 
             <GridLayout columns="9*, *" rows="auto" *ngSwitchCase="'tags'" (tap)="addTag(item)">
                 <Label col="0" row="0" fontSize="20" textWrap="true">{{ item }}</Label>
-                <Image col="1" row="0" src="~/assets/add.png"
+                <Image col="1" row="0" src="~/assets/images/add.png"
                        [backgroundColor]="getColor('searchSuggestions')"></Image>
             </GridLayout>
         </GridLayout>
