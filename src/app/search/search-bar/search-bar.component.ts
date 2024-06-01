@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { map } from 'rxjs';
-import { RecipeService } from '~/app/recipe/service/recipe.service';
+import { RecipeService } from '../../recipe/service/recipe.service';
 import { getColor } from '../search-bar.color-helper';
-import { NavigationService } from '~/app/shared/navigation/navigation.service';
+import { NavigationService } from '../../navigation/navigation.service';
 import { EventData, TextField } from '@nativescript/core';
 
 @Component({

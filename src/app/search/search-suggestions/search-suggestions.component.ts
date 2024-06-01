@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NavigationService } from '~/app/shared/navigation/navigation.service';
-import { RecipeListingItem } from '~/app/recipe/model/recipe-listing-item';
+import { NavigationService } from '../../navigation/navigation.service';
+import { RecipeListingItem } from '../../recipe/model/recipe-listing-item';
 import { Observable } from 'rxjs';
-import { getColor } from '~/app/shared/search/search-bar.color-helper';
+import { getColor } from '../search-bar.color-helper';
 
 @Component({
   selector: 'mm-search-suggestions',

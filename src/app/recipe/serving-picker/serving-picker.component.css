@@ -1,0 +1,14 @@
+.picker {
+    height: 15%;
+    width: 40%;
+    border-radius: 5px;
+}
+
+.main-layout {
+    width: 96%;
+}
+
+Label {
+    border-radius: 1px;
+}
+

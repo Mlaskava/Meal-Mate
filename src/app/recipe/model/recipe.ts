@@ -1,4 +1,5 @@
 import { Ingredient } from './ingredient';
+import { Nutrition } from '~/app/recipe/model/nutrition';
 
 export interface Recipe {
   readonly id: number;
@@ -8,4 +9,6 @@ export interface Recipe {
   readonly description: string;
   readonly instructions: string[];
   readonly ingredients: Ingredient[];
+  servings: number;
+  readonly nutritionInformation: Nutrition;
 }

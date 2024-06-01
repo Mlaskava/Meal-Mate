@@ -4,8 +4,8 @@ import { NativeScriptRouterModule } from '@nativescript/angular';
 
 import { HomePageComponent } from '~/app/home-page/home-page.component';
 import { RecipeDetailsComponent } from '~/app/recipe/recipe-details/recipe-details.component';
-import { SearchPageComponent } from '~/app/shared/search/search-page/search-page.component';
-import { SearchResultsComponent } from '~/app/shared/search/search-results/search-results.component';
+import { SearchPageComponent } from '~/app/search/search-page/search-page.component';
+import { SearchResultsComponent } from '~/app/search/search-results/search-results.component';
 import { ImageComponent } from '~/app/recipe/image/image.component';
 
 const routes: Routes = [

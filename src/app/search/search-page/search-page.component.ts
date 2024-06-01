@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { RecipeListingItem } from '~/app/recipe/model/recipe-listing-item';
-import { RecipeService } from '~/app/recipe/service/recipe.service';
+import { RecipeListingItem } from '../../recipe/model/recipe-listing-item';
+import { RecipeService } from '../../recipe/service/recipe.service';
 import { TagsService } from '../../tags/tags.service';
 import { NavigationService } from '../../navigation/navigation.service';
 import { isSubstring } from '../../comparision/compare-util';

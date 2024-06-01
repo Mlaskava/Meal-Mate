@@ -1,0 +1,7 @@
+<StackLayout>
+    <Label fontSize="30">Ingredients:</Label>
+    <GridLayout *ngFor="let ingredient of ingredients" columns="5*, auto" rows="*">
+        <Label col="0" fontSize="20" textWrap="true">{{ ingredient.name }}</Label>
+        <Label col="1" fontSize="20" textWrap="true">{{ getDisplayedQuantity(ingredient) }}</Label>
+    </GridLayout>
+</StackLayout>

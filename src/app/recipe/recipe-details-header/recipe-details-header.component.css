@@ -2,7 +2,6 @@ Image {
     width: 100%;
     height: 20%;
     stretch: aspectFill;
-    border-radius: 20px;
 }
 
 .icon {

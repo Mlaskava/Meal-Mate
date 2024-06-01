@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '~/app/recipe/service/recipe.service';
-import { NavigationService } from '~/app/shared/navigation/navigation.service';
+import { RecipeService } from '../../recipe/service/recipe.service';
+import { NavigationService } from '../../navigation/navigation.service';
 import { map, Observable } from 'rxjs';
-import { RecipeListingItem } from '~/app/recipe/model/recipe-listing-item';
-import { equalsIgnoreCase, isSubstring } from '~/app/shared/comparision/compare-util';
+import { RecipeListingItem } from '../../recipe/model/recipe-listing-item';
+import { equalsIgnoreCase, isSubstring } from '../../comparision/compare-util';
 
 @Component({
   selector: 'mm-search-results',
@@ -32,7 +32,6 @@ export class SearchResultsComponent implements OnInit {
       this.recipes$ = this.recipes$.pipe(map(recipes => recipes.filter(recipe =>
         isSubstring(this.searchFieldValue as string, recipe.name))));
     }
-    this.recipes$ = this.recipes$.pipe(map(recipes => recipes.sort((recipe1, recipe2) => recipe1.name.length - recipe2.name.length)));
   }
 
   set searchedTags(searchedTags: string[]) {

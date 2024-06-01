@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RecipeListingItem } from '~/app/recipe/model/recipe-listing-item';
 import { RecipeService } from '~/app/recipe/service/recipe.service';
-import { NavigationService } from '~/app/shared/navigation/navigation.service';
+import { NavigationService } from '~/app/navigation/navigation.service';
 
 @Component({
   selector: 'mm-recipe-list',

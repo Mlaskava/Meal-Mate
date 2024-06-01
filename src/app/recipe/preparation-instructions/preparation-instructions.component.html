@@ -1,0 +1,4 @@
+<StackLayout>
+    <Label fontSize="30">Preparation:</Label>
+    <Label [backgroundColor]="getColor('searchSuggestions')" *ngFor="let instruction of instructions" textWrap="true" fontSize="22">{{instruction}}</Label>
+</StackLayout>

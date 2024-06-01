@@ -1,0 +1,19 @@
+<StackLayout class="main-layout" *ngIf="Object.keys(nutrition).length > 0">
+    <GridLayout columns="8*, *" (tap)="nutritionVisible = !nutritionVisible">
+        <Label fontSize="30" col="0" [backgroundColor]="getColor('searchSuggestions')">Nutrition</Label>
+        <Image *ngIf="nutritionVisible" col="1" src="~/assets/images/arrow-up.png"></Image>
+        <Image *ngIf="!nutritionVisible" col="1" src="~/assets/images/arrow-down.png"></Image>
+    </GridLayout>
+    <StackLayout *ngIf="nutritionVisible">
+        <GridLayout  columns="*, *" rows="auto">
+            <StackLayout col="0">
+                <Label col="0" fontSize="18">For one serving:</Label>
+                <Label *ngFor="let nutritionKey of Object.keys(nutrition)" col="0" textAlignment="left" fontSize="15">{{nutritionKey}}: {{nutrition[nutritionKey]}}</Label>
+            </StackLayout>
+            <StackLayout col="1" *ngIf="currentServings > 1">
+                <Label col="1" fontSize="18" textAlignment="right">For {{currentServings}} servings:</Label>
+                <Label col="1" textAlignment="right" fontSize="15" *ngFor="let nutritionKey of Object.keys(nutrition)">{{nutritionKey}}: {{parseInt(nutrition[nutritionKey]) * currentServings}}</Label>
+            </StackLayout>
+           </GridLayout>
+    </StackLayout>
+</StackLayout>

@@ -1,0 +1,8 @@
+StackLayout {
+    width: 96%;
+}
+
+GridLayout {
+    border-bottom-color: lightgray;
+    border-bottom-width: 2px;
+}

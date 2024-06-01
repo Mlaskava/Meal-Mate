@@ -15,6 +15,6 @@ export class RecipeService {
   }
 
   getRecipeDetails(id: number): Observable<Recipe> {
-    return this.httpClient.get<Recipe>(`recipes/${id}`);
+    return this.httpClient.get<Recipe>(`recipes/${id}`).pipe(shareReplay(1));
   }
 }

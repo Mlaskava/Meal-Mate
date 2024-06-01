@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NavigationService } from '~/app/shared/navigation/navigation.service';
+import { NavigationService } from '~/app/navigation/navigation.service';
 
 @Component({
   selector: 'mm-recipe-details-header',

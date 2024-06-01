@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RecipeService } from '~/app/recipe/service/recipe.service';
 import { Observable } from 'rxjs';
 import { Recipe } from '~/app/recipe/model/recipe';
-import { NavigationService } from '~/app/shared/navigation/navigation.service';
+import { NavigationService } from '~/app/navigation/navigation.service';
 
 @Component({
   selector: 'mm-recipe-details',

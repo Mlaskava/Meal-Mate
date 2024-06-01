@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationService } from '~/app/shared/navigation/navigation.service';
+import { NavigationService } from '~/app/navigation/navigation.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

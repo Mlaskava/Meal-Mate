@@ -1,14 +1,16 @@
 <ng-container *ngIf="(recipe$ | async) as recipe else loading">
-    <StackLayout>
-        <mm-recipe-details-header [imageUrl]="recipe.imageUrl" [recipeName]="recipe.name"></mm-recipe-details-header>
-        <ScrollView>
-            <StackLayout>
-                <Label fontSize="35" textWrap="true" fontWeight="bold">{{ recipe.name }}</Label>
-                <Label *ngIf="recipe.description" fontSize="20" textWrap="true">{{ recipe.description }}</Label>
-                <mm-ingredient-list [ingredients]="recipe.ingredients"></mm-ingredient-list>
-            </StackLayout>
-        </ScrollView>
-    </StackLayout>
+    <ScrollView>
+        <StackLayout>
+            <Label fontSize="35" textWrap="true" fontWeight="bold">{{ recipe.name }}</Label>
+            <mm-recipe-details-header [imageUrl]="recipe.imageUrl"
+                                      [recipeName]="recipe.name"></mm-recipe-details-header>
+            <Label fontSize="20" *ngIf="recipe.description" textWrap="false">{{ recipe.description }}</Label>
+            <mm-ingredient-list [servings]="recipe.servings" [ingredients]="recipe.ingredients"></mm-ingredient-list>
+            <mm-serving-picker [(servings)]="recipe.servings"></mm-serving-picker>
+            <mm-nutrition [servings]="recipe.servings" [nutrition]="recipe.nutritionInformation"></mm-nutrition>
+            <mm-preparation-instructions [instructions]="recipe.instructions"></mm-preparation-instructions>
+        </StackLayout>
+    </ScrollView>
 </ng-container>
 <ng-template #loading>
     <GridLayout>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { getColor } from '~/app/shared/search/search-bar.color-helper';
+import { getColor } from '../search-bar.color-helper';
 import { Label } from '@nativescript/core';
 
 @Component({
