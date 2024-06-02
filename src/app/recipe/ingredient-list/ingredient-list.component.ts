@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Ingredient } from '../model/ingredient';
+import convert, { Unit } from 'convert';
 
 @Component({
   selector: 'mm-ingredient-list',
@@ -36,7 +37,11 @@ export class IngredientListComponent {
 
   @Input()
   set ingredients(ingredients: Ingredient[]) {
-    this._ingredients = ingredients.sort((a, b) => (a.quantity || 0) - (b.quantity || 0));
+    this._ingredients = ingredients.sort((a, b) => (a.quantity || 0) - (b.quantity || 0))
+      .map(ingredient => {
+        ingredient.displayedQuantity = this.getDisplayedQuantity(ingredient);
+        return ingredient;
+      });
   }
 
   @Input()
@@ -55,17 +60,39 @@ export class IngredientListComponent {
     return this._ingredients;
   }
 
-  getQuantityValue(quantity: number): string {
-    const quantityDividedByFraction = (quantity * this.currentServings / this.baseServings).toString().split('.');
-    if (quantityDividedByFraction[0] === '0') {
-      quantityDividedByFraction[0] = ''
+  getQuantityValue(quantity: string): string {
+    const quantityDividedByFraction = this.roundNumber(Number(quantity) * this.currentServings / this.baseServings)
+      .toString()
+      .split('.')
+      .map(quantityPart => quantityPart !== '0' ? quantityPart : '');
+    if (quantityDividedByFraction.length > 1) {
+      if (this.fractionDisplay.has(quantityDividedByFraction[1])) {
+        quantityDividedByFraction[1] = this.fractionDisplay.get(quantityDividedByFraction[1]);
+        return quantityDividedByFraction.join('');
+      }
     }
-    return this.fractionDisplay.has(quantityDividedByFraction[1]) ?
-      [quantityDividedByFraction[0], this.fractionDisplay.get(quantityDividedByFraction[1])].join('') : quantityDividedByFraction.join('.');
+    return quantityDividedByFraction.some(value => value === '') ? quantityDividedByFraction.join('') : quantityDividedByFraction.join('.');
   }
 
   getDisplayedQuantity(ingredient: Ingredient) {
-    return ingredient.quantity > 0 ? (this.getQuantityValue(ingredient.quantity)+ ' ' + (ingredient.quantity != 1 ? ingredient.unitPlural || '' : ingredient.unitSingular || '')) : '';
+    if (!ingredient.quantity) {
+      return '';
+    }
+    try {
+      const convertedValue = convert(ingredient.quantity, ingredient.unitShort as Unit).to('best', 'metric').toString();
+      return this.getQuantityValue(convertedValue.match(/\d+\.?\d*/).toString()) + convertedValue.match(/[A-Za-z]+/).toString();
+    } catch (error) {
+      return this.getQuantityValue((ingredient.quantity).toString()) + ' ' + (ingredient.unitShort || '');
+    }
+  }
+
+  private roundNumber(value: number): string {
+    if (value > 10) {
+      return value.toFixed(0);
+    } else if (value.toFixed(2).toString().endsWith('5')) {
+      return value.toFixed(2);
+    }
+    return value.toFixed(1);
   }
 
 }

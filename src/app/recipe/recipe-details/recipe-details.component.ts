@@ -18,4 +18,5 @@ export class RecipeDetailsComponent {
 
   readonly id: number;
   readonly recipe$: Observable<Recipe>;
+  protected readonly Object = Object;
 }

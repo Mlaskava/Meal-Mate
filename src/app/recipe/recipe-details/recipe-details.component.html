@@ -14,7 +14,7 @@
             <mm-content [contentInline]="true">
                 <mm-serving-picker [(servings)]="recipe.servings"></mm-serving-picker>
             </mm-content>
-            <mm-content title="Nutrition" [contentVisible]="false">
+            <mm-content title="Nutrition" [contentVisible]="false" *ngIf="Object.keys(recipe.nutritionInformation).length > 0">
                 <mm-nutrition [servings]="recipe.servings" [nutrition]="recipe.nutritionInformation"></mm-nutrition>
             </mm-content>
             <mm-content title="Preparation">

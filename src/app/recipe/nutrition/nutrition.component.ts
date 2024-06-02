@@ -25,7 +25,6 @@ export class NutritionComponent {
   currentServings: number;
   baseServings: number;
 
-  nutritionVisible: boolean = false;
   protected readonly getColor = getColor;
   protected readonly parseInt = parseInt;
 }
