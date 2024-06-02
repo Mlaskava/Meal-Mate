@@ -5,7 +5,7 @@
             <mm-recipe-details-header [imageUrl]="recipe.imageUrl"
                                       [recipeName]="recipe.name"></mm-recipe-details-header>
             <mm-content *ngIf="recipe.description" title="Description">
-                <Label fontSize="20" textWrap="false">{{ recipe.description }}</Label>
+                <Label fontSize="20" textWrap="true">{{ recipe.description }}</Label>
             </mm-content>
             <mm-content title="Ingredients">
                 <mm-ingredient-list [servings]="recipe.servings"
