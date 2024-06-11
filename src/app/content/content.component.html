@@ -3,6 +3,9 @@
     <Image *ngIf="contentVisible" col="1" src="~/assets/images/arrow-up.png"></Image>
     <Image *ngIf="!contentVisible" col="1" src="~/assets/images/arrow-down.png"></Image>
 </GridLayout>
-<GridLayout class="content" *ngIf="contentVisible">
-    <ng-content></ng-content>
+<GridLayout class="main-layout">
+    <Label fontSize="30" *ngIf="contentInline" col="0">{{title}}</Label>
+    <GridLayout class="content" *ngIf="contentVisible">
+        <ng-content></ng-content>
+    </GridLayout>
 </GridLayout>

@@ -11,10 +11,11 @@
                 <mm-ingredient-list [servings]="recipe.servings"
                                     [ingredients]="recipe.ingredients"></mm-ingredient-list>
             </mm-content>
-            <mm-content [contentInline]="true">
-                <mm-serving-picker [(servings)]="recipe.servings"></mm-serving-picker>
+            <mm-content [contentInline]="true" title="Servings">
+                <mm-amount-picker [(amount)]="recipe.servings"></mm-amount-picker>
             </mm-content>
-            <mm-content title="Nutrition" [contentVisible]="false" *ngIf="Object.keys(recipe.nutritionInformation).length > 0">
+            <mm-content title="Nutrition" [contentVisible]="false"
+                        *ngIf="Object.keys(recipe.nutritionInformation).length > 0">
                 <mm-nutrition [servings]="recipe.servings" [nutrition]="recipe.nutritionInformation"></mm-nutrition>
             </mm-content>
             <mm-content title="Preparation">

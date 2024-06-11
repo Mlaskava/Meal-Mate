@@ -1,8 +1,0 @@
-<GridLayout class="main-layout" columns="3*, 2*" rows="*">
-    <Label col="0" fontSize="30">Servings</Label>
-    <GridLayout col="1" rows="*" columns="*, 2*, *">
-        <Image col="0" src="~/assets/images/remove.png" (tap)="servingsAmount = servings - 1" [backgroundColor]="getColor('searchBar')"></Image>
-        <Label col="1" fontSize="20" textAlignment="center">{{servings}}</Label>
-        <Image col="2" src="~/assets/images/add.png" (tap)="servingsAmount = servings + 1" [backgroundColor]="getColor('searchBar')"></Image>
-    </GridLayout>
-</GridLayout>
