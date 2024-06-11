@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, shareReplay } from 'rxjs';
+import { Observable, shareReplay, Subject } from 'rxjs';
 import { RecipeListingItem } from '~/app/recipe/model/recipe-listing-item';
 import { Recipe } from '~/app/recipe/model/recipe';
 
@@ -9,9 +9,16 @@ import { Recipe } from '~/app/recipe/model/recipe';
 })
 export class RecipeService {
 
-  recipeList$: Observable<RecipeListingItem[]> = this.httpClient.get<RecipeListingItem[]>('recipes').pipe(shareReplay(1));
+  refreshRecipes() {
+    return this.httpClient.get<RecipeListingItem[]>('recipes').subscribe(this.recipeSubject)
+  }
+
+  recipeSubject: Subject<RecipeListingItem[]> = new Subject<RecipeListingItem[]>();
+  recipeList$: Observable<RecipeListingItem[]>;
 
   constructor(private readonly httpClient: HttpClient) {
+    this.refreshRecipes();
+    this.recipeList$ = this.recipeSubject.asObservable().pipe(shareReplay(1))
   }
 
   getRecipeDetails(id: number): Observable<Recipe> {

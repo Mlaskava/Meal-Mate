@@ -3,20 +3,17 @@ import { NavigationService } from '../navigation/navigation.service';
 import { CommonModule } from '@angular/common';
 import { NativeScriptModule } from '@nativescript/angular';
 import { AmountPickerComponent } from '~/app/shared/amount-picker/amount-picker.component';
+import { ContentComponent } from '~/app/shared/content/content.component';
 
 @NgModule({
-  declarations: [
-    AmountPickerComponent
-  ],
+  declarations: [AmountPickerComponent, ContentComponent],
   providers: [NavigationService],
   schemas: [NO_ERRORS_SCHEMA],
   imports: [
     CommonModule,
     NativeScriptModule,
   ],
-  exports: [
-    AmountPickerComponent
-  ]
+  exports: [AmountPickerComponent, ContentComponent]
 })
 export class SharedModule {
 }

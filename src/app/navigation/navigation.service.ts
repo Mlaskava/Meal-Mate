@@ -15,8 +15,6 @@ export class NavigationService {
     return this._searchId;
   }
 
-  //TODO Error Handling
-
   showDetailsPage(id: number) {
     this.router.navigate(['details', {id: id}]).catch();
   }

@@ -13,7 +13,7 @@ import { getServerUrl, setCustomUrl } from '~/app/interceptors/url.config';
 })
 export class SearchBarComponent implements AfterViewInit {
 
-  constructor(recipeService: RecipeService, protected readonly navigationService: NavigationService) {
+  constructor(private readonly recipeService: RecipeService, protected readonly navigationService: NavigationService) {
     recipeService.recipeList$.pipe(map(recipes => recipes.map(recipe => recipe.id)))
       .subscribe(recipes => this.recipeIds = recipes);
   }
@@ -60,13 +60,16 @@ export class SearchBarComponent implements AfterViewInit {
   openUrlOptions() {
     Dialogs.prompt({
       title: 'Change URL to recipes server',
-      message: '\nAttention! This is advanced option. If not necessary, it is best to leave this setting unchanged, as it can break application if set incorrectly\n',
+      message: '\nAttention! This is advanced option. ' +
+        'If not necessary, it is best to leave this setting unchanged, as it can break application if set incorrectly. ' +
+        '\n\nIf you want to restore default URL, please leave field below empty and tap change\n',
       defaultText: getServerUrl(),
       okButtonText: 'Change',
       cancelButtonText: 'Cancel',
     }).then((result) => {
       if (result.result) {
         setCustomUrl(result.text);
+        this.recipeService.refreshRecipes();
       }
     })
   }

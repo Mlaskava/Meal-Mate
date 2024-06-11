@@ -10,7 +10,6 @@ import { PreparationInstructionsComponent } from './preparation-instructions/pre
 import { NutritionComponent } from './nutrition/nutrition.component';
 import { IngredientListComponent } from '~/app/recipe/ingredient-list/ingredient-list.component';
 import { SearchModule } from '~/app/search/search.module';
-import { ContentComponent } from '~/app/content/content.component';
 import { TagsModule } from '~/app/tags/tags.module';
 import { SharedModule } from '~/app/shared/shared.module';
 
@@ -26,7 +25,7 @@ import { SharedModule } from '~/app/shared/shared.module';
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
-  imports: [SearchModule, ImageCacheItModule, AsyncPipe, NativeScriptCommonModule, TagsModule, ContentComponent, SharedModule],
+  imports: [SearchModule, ImageCacheItModule, AsyncPipe, NativeScriptCommonModule, TagsModule, SharedModule],
   exports: [
     RecipeListComponent
   ]
