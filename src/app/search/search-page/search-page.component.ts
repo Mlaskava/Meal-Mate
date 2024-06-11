@@ -5,6 +5,7 @@ import { RecipeService } from '../../recipe/service/recipe.service';
 import { TagsService } from '../../tags/tags.service';
 import { NavigationService } from '../../navigation/navigation.service';
 import { isSubstring } from '../../comparision/compare-util';
+import { getColor } from '~/app/search/search-bar.color-helper';
 
 @Component({
   selector: 'mm-search-page',
@@ -16,20 +17,21 @@ export class SearchPageComponent implements OnInit {
   @Input()
   _searchType: 'recipes' | 'tags';
 
-  //TODO maybe simplify obtaining searchType(base it on tags length)
-
   get searchType() {
     return this._searchType;
   }
 
   set searchType(searchType: 'recipes' | 'tags') {
     this._searchType = searchType;
-    this.reapplyFilters(searchType);
+    this.reapplyFilters();
   }
 
   recipes: Observable<RecipeListingItem[]>;
   allTagNames: Observable<string[]> = this.tagsService.tagList$;
   suggestedTags: Observable<string[]>;
+
+  amountPickerVisible: boolean = false;
+  _ingredientsAmount: number;
 
   constructor(private readonly recipeService: RecipeService, private readonly tagsService: TagsService,
               private readonly navigationService: NavigationService) {
@@ -37,6 +39,8 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit() {
     const searchTags = this.navigationService.getQueryParamAsArray('searchTags');
+    const ingredientsAmountParam = this.navigationService.getQueryParam('ingredientsAmount');
+    this.ingredientsAmount = !!ingredientsAmountParam ? parseInt(ingredientsAmountParam) : undefined;
     if (searchTags.length > 0) {
       this._searchedTags = searchTags;
       this._searchFieldValue = '';
@@ -50,7 +54,7 @@ export class SearchPageComponent implements OnInit {
 
   set searchedTags(searchedTags: string[]) {
     this._searchedTags = searchedTags;
-    this.reapplyFilters(this._searchType);
+    this.reapplyFilters();
   }
 
   get searchedTags(): string[] {
@@ -63,19 +67,35 @@ export class SearchPageComponent implements OnInit {
 
   set searchFieldValue(searchFieldValue: string) {
     this._searchFieldValue = searchFieldValue;
-    this.reapplyFilters(this._searchType);
+    this.reapplyFilters();
   }
 
   get searchFieldValue(): string {
     return this._searchFieldValue;
   }
 
-  reapplyFilters(searchType: 'recipes' | 'tags') {
-    if (searchType === 'recipes') {
+  get ingredientsAmount() {
+    return this._ingredientsAmount;
+  }
+
+  set ingredientsAmount(amount: number) {
+    this._ingredientsAmount = amount;
+    this.reapplyFilters();
+  }
+
+  closeAmountPicker() {
+    this.amountPickerVisible = false;
+    this._ingredientsAmount = undefined;
+  }
+
+  reapplyFilters() {
+    if (this._searchType === 'recipes') {
       this.recipes = this.recipeService
         .recipeList$
         .pipe(map(recipeList =>
-          recipeList.filter(recipe => isSubstring(this.searchFieldValue, recipe.name))));
+          recipeList
+            .filter(recipe => isSubstring(this.searchFieldValue, recipe.name))
+            .filter(recipe => !!this._ingredientsAmount ? recipe.ingredientNames.length <= this._ingredientsAmount : true)));
     } else {
       this.suggestedTags = this.allTagNames.pipe(map(tags => tags
         .filter(tag => isSubstring(this.searchFieldValue, tag))
@@ -85,9 +105,9 @@ export class SearchPageComponent implements OnInit {
 
   submitSearch(searchFieldValue: string) {
     if (this._searchType === 'recipes') {
-      this.navigationService.searchByRecipe(searchFieldValue);
+      this.navigationService.searchByRecipe(searchFieldValue, this._ingredientsAmount);
     } else if (this._searchedTags.length > 0) {
-      this.navigationService.searchByTags(this._searchedTags);
+      this.navigationService.searchByTags(this._searchedTags, this._ingredientsAmount);
     }
   }
 
@@ -98,4 +118,6 @@ export class SearchPageComponent implements OnInit {
       this.suggestedTags = this.suggestedTags.pipe(map(tags => tags.filter(tag => tag !== tagName)));
     }
   }
+
+  protected readonly getColor = getColor;
 }

@@ -22,6 +22,9 @@ export class SearchBarComponent implements AfterViewInit {
   }
 
   @Output()
+  amountPickerVisibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Output()
   searchFieldValueChange: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
@@ -35,6 +38,9 @@ export class SearchBarComponent implements AfterViewInit {
 
   @Input()
   isOnHomePage = true;
+
+  @Input()
+  ingredientsAmount: number;
 
   @Input()
   set searchFieldValue(searchFieldValue: string) {
@@ -59,8 +65,12 @@ export class SearchBarComponent implements AfterViewInit {
   }
 
   goToSearchPage() {
-    this.navigationService.goToSearchPage(this.searchFieldValue, this.navigationService.getQueryParamAsArray('searchTags'));
+    this.navigationService.goToSearchPage(this.searchFieldValue, this.ingredientsAmount, this.navigationService.getQueryParamAsArray('searchTags'));
   }
 
   protected readonly getSearchBarColor = getColor;
+
+  showAmountPicker() {
+    this.amountPickerVisibleChange.emit(true);
+  }
 }

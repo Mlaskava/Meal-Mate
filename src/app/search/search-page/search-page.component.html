@@ -1,7 +1,12 @@
 <StackLayout>
-    <mm-search-bar [isOnHomePage]="false" [searchActive]="true" [(searchFieldValue)]="searchFieldValue"
+    <mm-search-bar (amountPickerVisibleChange)="amountPickerVisible=$event" [isOnHomePage]="false" [searchActive]="true" [(searchFieldValue)]="searchFieldValue"
                    (searchSubmitted)="submitSearch($event)"></mm-search-bar>
-    <mm-search-type-bar [(selected)]="searchType"></mm-search-type-bar>
+    <GridLayout *ngIf="amountPickerVisible" columns="6*, 3*, *" class="picker" [backgroundColor]="getColor('searchSuggestions')">
+        <Label col="0" fontSize="20">Maximum ingredients:</Label>
+        <mm-amount-picker col="1" [(amount)]="ingredientsAmount"></mm-amount-picker>
+        <Image col="2" src="~/assets/images/close.png" (tap)="closeAmountPicker()"></Image>
+    </GridLayout>
+    <mm-search-type-bar col="0" [(selected)]="searchType"></mm-search-type-bar>
     <mm-tags-list *ngIf="_searchType === 'tags'" [editable]="true" [(tags)]="searchedTags"></mm-tags-list>
     <mm-search-suggestions [searchType]="_searchType" [searchFieldValue]="searchFieldValue"
                            [tags]="suggestedTags" [recipes]="recipes"

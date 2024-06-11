@@ -25,23 +25,23 @@ export class NavigationService {
     this.router.navigate(['image', {imageUrl: imageUrl, title: title}]).catch();
   }
 
-  goToSearchPage(searchName: string, searchTags: string[] = [], replaceUrl = false) {
+  goToSearchPage(searchName: string, ingredientsAmount: number, searchTags: string[] = [], replaceUrl = false) {
     this.router.navigate(['search-page'], {
-      queryParams: {searchFieldValue: searchName, searchTags: searchTags},
+      queryParams: {searchFieldValue: searchName, searchTags: searchTags, ingredientsAmount: ingredientsAmount},
       replaceUrl: replaceUrl
     }).catch();
   }
 
-  searchByRecipe(searchName: string) {
+  searchByRecipe(searchName: string, ingredientsAmount: number) {
     this.router.navigate([`search-results/${this.searchId}`], {
-      queryParams: {searchFieldValue: searchName},
+      queryParams: {searchFieldValue: searchName, ingredientsAmount: ingredientsAmount},
       replaceUrl: true
     }).catch();
   }
 
-  searchByTags(searchTags: string[], replaceUrl = true, samePageUrl = false) {
+  searchByTags(searchTags: string[], ingredientsAmount: number, replaceUrl = true, samePageUrl = false) {
     this.router.navigate([`search-results/${this.searchId}`], {
-      queryParams: samePageUrl ? {searchTags: searchTags, forceReload: true} : {searchTags: searchTags},
+      queryParams: samePageUrl ? {searchTags: searchTags, forceReload: true, ingredientsAmount: ingredientsAmount} : {searchTags: searchTags, ingredientsAmount: ingredientsAmount},
       replaceUrl: replaceUrl
     }).catch();
   }

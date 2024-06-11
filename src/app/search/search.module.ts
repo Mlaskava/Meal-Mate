@@ -8,6 +8,7 @@ import { SearchSuggestionsComponent } from '~/app/search/search-suggestions/sear
 import { SearchResultsComponent } from '~/app/search/search-results/search-results.component';
 import { NavigationService } from '~/app/navigation/navigation.service';
 import { TagsModule } from '~/app/tags/tags.module';
+import { SharedModule } from '~/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TagsModule } from '~/app/tags/tags.module';
   imports: [
     CommonModule,
     NativeScriptModule,
-    TagsModule
+    TagsModule,
+    SharedModule
   ],
   exports: [
     SearchBarComponent,

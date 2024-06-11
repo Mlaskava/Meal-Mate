@@ -1,4 +1,4 @@
-<ng-container *ngIf="recipes$ | async as recipes else loading">
+<ng-container *ngIf="recipes$ | async as recipes">
     <ListView [items]="recipes" height="1500">
         <ng-template let-recipe="item">
             <ng-container>
@@ -12,8 +12,6 @@
     </ListView>
 </ng-container>
 
-<ng-template #loading>
-    <AbsoluteLayout>
-        <ActivityIndicator [busy]="(recipes$ | async)"></ActivityIndicator>
-    </AbsoluteLayout>
-</ng-template>
+<GridLayout>
+    <ActivityIndicator [busy]="!recipesReady"></ActivityIndicator>
+</GridLayout>

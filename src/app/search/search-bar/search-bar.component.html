@@ -8,6 +8,6 @@
 
     <Label *ngIf="!searchActive" id="inactiveSearchField" col="1"
            (tap)="goToSearchPage()">{{isOnHomePage ? 'Search for recipes' : searchFieldValue}}</Label>
-    <Image col="2" src="~/assets/images/filter.png" (tap)="goToRandomRecipe()"></Image>
+    <Image col="2" *ngIf="searchActive" src="~/assets/images/filter.png" (tap)="showAmountPicker()"></Image>
     <Image col="3" src="~/assets/images/shuffle.png" (tap)="goToRandomRecipe()"></Image>
 </GridLayout>

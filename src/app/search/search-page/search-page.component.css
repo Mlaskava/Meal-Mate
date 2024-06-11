@@ -2,3 +2,11 @@ SegmentedBar {
     background-color: red;
     border-radius: 10px;
 }
+
+.picker {
+    padding: 5vh 0 5vh 0;
+    height: 50vh;
+    border-radius: 25px;
+    margin-bottom: 5vh;
+    width: 96%;
+}

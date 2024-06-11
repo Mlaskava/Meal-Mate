@@ -17,10 +17,14 @@ export class SearchResultsComponent implements OnInit {
 
   recipes$: Observable<RecipeListingItem[]> = this.recipeService.recipeList$;
 
+  ingredientsAmount: number;
+
   constructor(private readonly recipeService: RecipeService, private readonly navigationService: NavigationService) {
   }
 
   ngOnInit() {
+    const ingredientsAmountParam = this.navigationService.getQueryParam('ingredientsAmount');
+    this.ingredientsAmount = !!ingredientsAmountParam ? parseInt(ingredientsAmountParam) : undefined;
     this.searchFieldValue = this.navigationService.getQueryParam('searchFieldValue');
     this._searchedTags = this.navigationService.getQueryParamAsArray('searchTags');
     if (this._searchedTags.length > 0) {
@@ -32,13 +36,15 @@ export class SearchResultsComponent implements OnInit {
       this.recipes$ = this.recipes$.pipe(map(recipes => recipes.filter(recipe =>
         isSubstring(this.searchFieldValue as string, recipe.name))));
     }
+    this.recipes$ = this.recipes$.pipe(map(recipes =>
+      recipes.filter(recipe => !!this.ingredientsAmount ? recipe.ingredientNames.length <= this.ingredientsAmount : true)));
   }
 
   set searchedTags(searchedTags: string[]) {
     if (searchedTags.length > 0) {
-      this.navigationService.searchByTags(searchedTags, false, true);
+      this.navigationService.searchByTags(searchedTags, this.ingredientsAmount, false, true);
     } else {
-      this.navigationService.goToSearchPage('', searchedTags, true);
+      this.navigationService.goToSearchPage('', undefined, searchedTags, true);
     }
   }
 

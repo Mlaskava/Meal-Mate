@@ -15,6 +15,9 @@ export class AmountPickerComponent {
   amountChange: EventEmitter<number> = new EventEmitter<number>();
 
   set servingsAmount(servings: number) {
+    if (!servings) {
+      servings = 1;
+    }
     if (servings > 0) {
       this.amount = servings;
       this.amountChange.emit(this.amount);

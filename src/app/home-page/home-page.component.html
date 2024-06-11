@@ -1,7 +1,4 @@
 <StackLayout>
     <mm-search-bar></mm-search-bar>
-    <mm-recipe-list (contentReadyChange)="contentReady = $event.valueOf()"></mm-recipe-list>
+    <mm-recipe-list></mm-recipe-list>
 </StackLayout>
-<GridLayout *ngIf="!contentReady">
-    <ActivityIndicator busy="true" ></ActivityIndicator>
-</GridLayout>

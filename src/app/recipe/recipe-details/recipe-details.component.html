@@ -11,8 +11,10 @@
                 <mm-ingredient-list [servings]="recipe.servings"
                                     [ingredients]="recipe.ingredients"></mm-ingredient-list>
             </mm-content>
-            <mm-content [contentInline]="true" title="Servings">
-                <mm-amount-picker [(amount)]="recipe.servings"></mm-amount-picker>
+            <mm-content [contentInline]="true" title="Servings:">
+                <GridLayout columns="*, *">
+                    <mm-amount-picker col="1" [(amount)]="recipe.servings"></mm-amount-picker>
+                </GridLayout>
             </mm-content>
             <mm-content title="Nutrition" [contentVisible]="false"
                         *ngIf="Object.keys(recipe.nutritionInformation).length > 0">
