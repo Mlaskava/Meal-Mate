@@ -3,7 +3,8 @@ import { map } from 'rxjs';
 import { RecipeService } from '../../recipe/service/recipe.service';
 import { getColor } from '../search-bar.color-helper';
 import { NavigationService } from '../../navigation/navigation.service';
-import { EventData, TextField } from '@nativescript/core';
+import { Dialogs, EventData, TextField } from '@nativescript/core';
+import { getServerUrl, setCustomUrl } from '~/app/interceptors/url.config';
 
 @Component({
   selector: 'mm-search-bar',
@@ -55,6 +56,20 @@ export class SearchBarComponent implements AfterViewInit {
   recipeIds: number[] = [];
 
   _searchFieldValue: string;
+
+  openUrlOptions() {
+    Dialogs.prompt({
+      title: 'Change URL to recipes server',
+      message: '\nAttention! This is advanced option. If not necessary, it is best to leave this setting unchanged, as it can break application if set incorrectly\n',
+      defaultText: getServerUrl(),
+      okButtonText: 'Change',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.result) {
+        setCustomUrl(result.text);
+      }
+    })
+  }
 
   submitSearch(event: EventData) {
     this.searchSubmitted.emit((event.object as TextField).text);

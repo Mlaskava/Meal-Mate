@@ -1,6 +1,6 @@
 <GridLayout [class]="searchActive ? 'activeSearch' : 'inactiveSearch'" columns="*, 7*, *, *" rows="60"
             [backgroundColor]="getSearchBarColor('searchBar')">
-    <Image *ngIf="isOnHomePage" col="0" src="~/assets/images/settings.png"></Image>
+    <Image *ngIf="isOnHomePage" col="0" src="~/assets/images/settings.png" (tap)="openUrlOptions()"></Image>
     <Image *ngIf="!isOnHomePage" col="0" src="~/assets/images/back.png" (tap)="navigationService.goToHomePage()"></Image>
     <TextField *ngIf="searchActive" col="1" id="activeSearchField" #searchField returnKeyType="search"
                [text]="searchFieldValue" (textChange)="searchFieldValue=$event.value"
