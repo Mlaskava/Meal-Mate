@@ -63,11 +63,12 @@ export class IngredientListComponent {
   getQuantityValue(quantity: string): string {
     const quantityDividedByFraction = this.roundNumber(Number(quantity) * this.currentServings / this.baseServings)
       .toString()
-      .split('.')
-      .map(quantityPart => quantityPart !== '0' ? quantityPart : '');
+      .split('.');
     if (quantityDividedByFraction.length > 1) {
+      quantityDividedByFraction[1] = quantityDividedByFraction[1] !== '0' ? quantityDividedByFraction[1] : '';
       if (this.fractionDisplay.has(quantityDividedByFraction[1])) {
         quantityDividedByFraction[1] = this.fractionDisplay.get(quantityDividedByFraction[1]);
+        quantityDividedByFraction[0] = quantityDividedByFraction[0] !== '0' ? quantityDividedByFraction[0] : '';
         return quantityDividedByFraction.join('');
       }
     }
