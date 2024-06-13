@@ -1,9 +1,8 @@
 <ng-container *ngIf="(recipe$ | async) as recipe else loading">
     <ScrollView>
         <StackLayout>
-            <Label fontSize="35" textWrap="true" fontWeight="bold">{{ recipe.name }}</Label>
-            <mm-recipe-details-header [imageUrl]="recipe.imageUrl"
-                                      [recipeName]="recipe.name"></mm-recipe-details-header>
+            <mm-content col="1" [contentVisible]="false" [mainTitle]="recipe.name" (tap)="imageMaximized = !imageMaximized"></mm-content>
+            <Image [class]="imageMaximized ? 'maximized' : 'minimized'" [src]="recipe.imageUrl"></Image>
             <mm-content *ngIf="recipe.description" title="Description">
                 <Label fontSize="20" textWrap="true">{{ recipe.description }}</Label>
             </mm-content>

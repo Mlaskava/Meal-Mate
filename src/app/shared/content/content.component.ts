@@ -12,6 +12,9 @@ export class ContentComponent {
   title: string;
 
   @Input()
+  mainTitle: string;
+
+  @Input()
   contentVisible: boolean = true;
 
   @Input()

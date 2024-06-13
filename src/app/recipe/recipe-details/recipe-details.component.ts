@@ -7,7 +7,8 @@ import { NavigationService } from '~/app/navigation/navigation.service';
 
 @Component({
   selector: 'mm-recipe-details',
-  templateUrl: './recipe-details.component.html'
+  templateUrl: './recipe-details.component.html',
+  styleUrls: ['./recipe-details.component.css']
 })
 export class RecipeDetailsComponent {
 
@@ -16,6 +17,7 @@ export class RecipeDetailsComponent {
     this.recipe$ = this.recipeService.getRecipeDetails(this.id);
   }
 
+  imageMaximized: boolean = false;
   readonly id: number;
   readonly recipe$: Observable<Recipe>;
   protected readonly Object = Object;

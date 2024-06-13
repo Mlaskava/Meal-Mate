@@ -1,0 +1,12 @@
+.maximized {
+    height: 100%;
+}
+
+.minimized {
+    height: 150vh;
+    stretch: aspectFill;
+}
+
+Image {
+    width: 100%;
+}

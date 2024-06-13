@@ -19,10 +19,6 @@ export class NavigationService {
     this.router.navigate(['details', {id: id}]).catch();
   }
 
-  showImage(imageUrl: string, title: string) {
-    this.router.navigate(['image', {imageUrl: imageUrl, title: title}]).catch();
-  }
-
   goToSearchPage(searchName: string, ingredientsAmount: number, searchTags: string[] = [], replaceUrl = false) {
     this.router.navigate(['search-page'], {
       queryParams: {searchFieldValue: searchName, searchTags: searchTags, ingredientsAmount: ingredientsAmount},
@@ -48,10 +44,6 @@ export class NavigationService {
     this.router.navigate([''], {
       clearHistory: true
     }).catch();
-  }
-
-  goBack() {
-    this.router.back();
   }
 
   getQueryParam(paramName: string): string {

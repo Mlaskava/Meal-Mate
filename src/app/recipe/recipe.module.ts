@@ -4,8 +4,6 @@ import { AsyncPipe } from '@angular/common';
 import { NativeScriptCommonModule } from '@nativescript/angular';
 import { ImageCacheItModule } from '@triniwiz/nativescript-image-cache-it/angular';
 import { RecipeDetailsComponent } from '~/app/recipe/recipe-details/recipe-details.component';
-import { ImageComponent } from './image/image.component';
-import { RecipeDetailsHeaderComponent } from './recipe-details-header/recipe-details-header.component';
 import { PreparationInstructionsComponent } from './preparation-instructions/preparation-instructions.component';
 import { NutritionComponent } from './nutrition/nutrition.component';
 import { IngredientListComponent } from '~/app/recipe/ingredient-list/ingredient-list.component';
@@ -17,8 +15,6 @@ import { SharedModule } from '~/app/shared/shared.module';
   declarations: [
     RecipeListComponent,
     RecipeDetailsComponent,
-    ImageComponent,
-    RecipeDetailsHeaderComponent,
     PreparationInstructionsComponent,
     NutritionComponent,
     IngredientListComponent

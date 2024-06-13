@@ -1,5 +1,6 @@
 <GridLayout class="main-layout" *ngIf="!contentInline" columns="*, auto" (tap)="contentVisible = !contentVisible">
-    <Label fontSize="30" col="0">{{title}}</Label>
+    <Label *ngIf="!mainTitle" fontSize="30" col="0">{{title}}</Label>
+    <Label *ngIf="mainTitle" fontSize="35" textWrap="true" fontWeight="bold" col="0">{{mainTitle}}</Label>
     <Image *ngIf="contentVisible" col="1" src="~/assets/images/arrow-up.png"></Image>
     <Image *ngIf="!contentVisible" col="1" src="~/assets/images/arrow-down.png"></Image>
 </GridLayout>
