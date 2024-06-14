@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { getColor } from '~/app/search/search-bar.color-helper';
 
 @Component({
@@ -16,6 +16,9 @@ export class ContentComponent {
 
   @Input()
   contentVisible: boolean = true;
+
+  @Output()
+  contentVisibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @Input()
   contentInline: boolean = false;

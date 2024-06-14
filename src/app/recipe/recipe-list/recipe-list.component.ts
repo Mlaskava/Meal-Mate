@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { RecipeListingItem } from '~/app/recipe/model/recipe-listing-item';
 import { RecipeService } from '~/app/recipe/service/recipe.service';
 import { NavigationService } from '~/app/navigation/navigation.service';
@@ -14,7 +14,7 @@ export class RecipeListComponent {
   recipesReady: boolean;
 
   constructor(recipeService: RecipeService, private readonly navigationService: NavigationService) {
-    this.recipes$ = recipeService.recipeList$;
+    this.recipes$ = recipeService.recipeList$.pipe(map(recipes => recipes.slice(0, 20)));
     this.recipes$.subscribe(()  => this.recipesReady = true);
   }
 

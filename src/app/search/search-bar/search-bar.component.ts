@@ -5,7 +5,6 @@ import { getColor } from '../search-bar.color-helper';
 import { NavigationService } from '../../navigation/navigation.service';
 import { Dialogs, EventData, TextField } from '@nativescript/core';
 import { getServerUrl, setCustomUrl } from '~/app/interceptors/url.config';
-import { TagsService } from '~/app/tags/tags.service';
 
 @Component({
   selector: 'mm-search-bar',
@@ -14,10 +13,9 @@ import { TagsService } from '~/app/tags/tags.service';
 })
 export class SearchBarComponent implements AfterViewInit {
 
-  constructor(private readonly recipeService: RecipeService, protected readonly navigationService: NavigationService, tagsService: TagsService) {
+  constructor(private readonly recipeService: RecipeService, protected readonly navigationService: NavigationService) {
     recipeService.recipeList$.pipe(map(recipes => recipes.map(recipe => recipe.id)))
       .subscribe(recipes => this.recipeIds = recipes);
-    tagsService.tagList$.subscribe() //Preload, in order to minimize loading time later
   }
 
   ngAfterViewInit() {
